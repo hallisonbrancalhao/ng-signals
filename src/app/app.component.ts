@@ -2,6 +2,7 @@ import { JsonPipe } from '@angular/common';
 import { Component, computed, effect, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { OnPushComponentComponent } from './components/on-push-component/on-push-component.component';
+import { SignalService } from './signal.service';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,9 @@ export class AppComponent {
 
   protected showCount$ = signal(false);
 
-  constructor() {
+  myObservable$ = this.signalService.couter;
+
+  constructor(private signalService: SignalService) {
     // (effect): deve estar no construtor
     // identifica o signal usado (dependencia) e sempre que ele mudar, executa a função
     effect(() => {
