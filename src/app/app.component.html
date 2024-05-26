@@ -29,4 +29,7 @@
   signal="Imputed value"
   disabled
   (hasClicked)="onHasClicked($event)"
+  [(inputValue)]="twoWayBinding"
 />
+
+<p> App component twoWayBinding: {{twoWayBinding}}</p>

@@ -34,7 +34,7 @@ export class AppComponent {
   });
 
   protectedmyObservable$ = this.signalService.couter;
-
+  twoWayBinding = 'two way binding';
 
   constructor(private signalService: SignalService) {
     // (effect): deve estar no construtor
