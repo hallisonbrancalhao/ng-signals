@@ -1,11 +1,12 @@
 import { JsonPipe } from '@angular/common';
 import { Component, computed, effect, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { OnPushComponentComponent } from './components/on-push-component/on-push-component.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, JsonPipe],
+  imports: [RouterOutlet, JsonPipe, OnPushComponentComponent],
   templateUrl: './app.component.html',
   styles: [``]
 })
