@@ -1,4 +1,4 @@
-import { Component, input, model, output } from '@angular/core';
+import { Component, effect, input, model, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -29,4 +29,11 @@ export class InputSignalComponent {
   // PREVIOUSLY: @Output() valueChange = new EventEmitter<string>();
   inputValue = model<string>('Click me!');
 
+
+  constructor() {
+    // PREVIOUSLY: ngOnChanges(changes: SimpleChanges) function...
+    effect(() => {
+      console.log('inputValue: ' + this.inputValue());
+    });
+  }
 }
