@@ -4,11 +4,12 @@ import { RouterOutlet } from '@angular/router';
 import { OnPushComponentComponent } from './components/on-push-component/on-push-component.component';
 import { SignalService } from './signal.service';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { InputSignalComponent } from './components/input-signal/input-signal.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, JsonPipe, OnPushComponentComponent, AsyncPipe],
+  imports: [RouterOutlet, JsonPipe, OnPushComponentComponent, AsyncPipe, InputSignalComponent],
   templateUrl: './app.component.html',
   styles: [``]
 })
