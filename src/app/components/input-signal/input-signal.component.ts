@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-input-signal',
@@ -7,13 +7,18 @@ import { Component, input } from '@angular/core';
   template: `
     <p>Input signal Label: {{ signal() }}/p>
 
-    <button [disabled]="disabled()">Click me!</button>
+    <button [disabled]="disabled()" (click)="hasClicked">Click me!</button>
   `
 })
 export class InputSignalComponent {
+  // PREVIOUSLY: @Input({ required: true }) signal: string = '';
   signal = input.required<string>();
   disabled = input(false, {
     transform: (value: string | boolean) =>
       typeof value === 'string' ? value === '' || value === 'true' : value
   })
+
+
+  // PREVIOUSLY: @Output() hasClicked = new EventEmitter<string>();
+  hasClicked = output<string>();
 }

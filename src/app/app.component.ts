@@ -44,6 +44,11 @@ export class AppComponent {
     });
   }
 
+  onHasClicked(value: string) {
+    console.log(value);
+
+  }
+
   set() {
     // (set): define o signal para um valor absoluto
     // this.var$.set({
