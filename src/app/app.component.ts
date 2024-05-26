@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ export class AppComponent {
 
   // (computed) reconhece dependencia de outro signal em "inscreve-se" para receber atualizações
   protected computed$ = computed(() => {
-    console.log("computing...");
+    // console.log("computing...");
 
     // Quando o valor showCount$() muda pra false, o computed$() não notificará mais o DOM
     if(this.showCount$())
@@ -25,6 +25,14 @@ export class AppComponent {
   });
 
   protected showCount$ = signal(false);
+
+  constructor() {
+    // (effect): deve estar no construtor
+    // identifica o signal usado (dependencia) e sempre que ele mudar, executa a função
+    effect(() => {
+      console.log('effect changed: ' + this.var$());
+    });
+  }
 
   set() {
     // (set): define o signal para um valor absoluto
