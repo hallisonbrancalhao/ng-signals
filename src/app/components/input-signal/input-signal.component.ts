@@ -9,5 +9,5 @@ import { Component, input } from '@angular/core';
   `
 })
 export class InputSignalComponent {
-  signal = input('Input signal');
+  signal = input.required<string>();
 }
