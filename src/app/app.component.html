@@ -1,6 +1,12 @@
 <pre>
-  Valor do Signal: {{ var$() | json }}
+  Valor do Signal: {{ var$() }}
+</pre>
+
+<pre>
+  Computed: {{ computed$() }}
 </pre>
 <hr>
-<button (click)="set">Set</button>
-<button (click)="update">Update</button>
+<!-- <button (click)="set">Set</button>
+<button (click)="update">Update</button> -->
+
+<button (click)="compute()">compute</button>
