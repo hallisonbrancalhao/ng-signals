@@ -1,19 +1,25 @@
-import { JsonPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Component, computed, effect, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { OnPushComponentComponent } from './components/on-push-component/on-push-component.component';
 import { SignalService } from './signal.service';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, JsonPipe, OnPushComponentComponent],
+  imports: [RouterOutlet, JsonPipe, OnPushComponentComponent, AsyncPipe],
   templateUrl: './app.component.html',
   styles: [``]
 })
 export class AppComponent {
 
   protected var$ = signal(1);
+  protected showCount$ = signal(false);
+
+  //Transforma o signal em um observable para ser usado no template
+  protected toObservable$ = toObservable(this.var$)
+  protected toSignal$ = toSignal(this.toObservable$)
 
   // (computed) reconhece dependencia de outro signal em "inscreve-se" para receber atualizações
   protected computed$ = computed(() => {
@@ -26,9 +32,8 @@ export class AppComponent {
       return 'not computed'
   });
 
-  protected showCount$ = signal(false);
+  protectedmyObservable$ = this.signalService.couter;
 
-  myObservable$ = this.signalService.couter;
 
   constructor(private signalService: SignalService) {
     // (effect): deve estar no construtor
