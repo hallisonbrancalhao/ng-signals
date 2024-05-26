@@ -14,7 +14,17 @@ export class AppComponent {
   protected var$ = signal(1);
 
   // (computed) reconhece dependencia de outro signal em "inscreve-se" para receber atualizações
-  protected computed$ = computed(() => `${this.var$()} - computed`);
+  protected computed$ = computed(() => {
+    console.log("computing...");
+
+    // Quando o valor showCount$() muda pra false, o computed$() não notificará mais o DOM
+    if(this.showCount$())
+      return `${this.var$()} - computed`
+    else
+      return 'not computed'
+  });
+
+  protected showCount$ = signal(false);
 
   set() {
     // (set): define o signal para um valor absoluto
@@ -37,5 +47,9 @@ export class AppComponent {
   compute() {
     // (compute): define valor para um signal com base em outro signal
     this.var$.update(curr => curr + 1);
+  }
+
+  change() {
+    this.showCount$.update(curr => !curr);
   }
 }
